@@ -45,6 +45,7 @@ sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb;
 # apt install libssl1.1;
 
 echo "deb [ arch=amd64,arm64,trusted=yes ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list;
+# see https://askubuntu.com/questions/732985/force-update-from-unsigned-repository
 sudo apt update;
 sudo apt install -y mongodb-org;
 
