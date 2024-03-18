@@ -12,7 +12,7 @@
 
 sql: `empleado(nombre, IDjefe)`
 
-empleado (estado1)
+tabla empleado (estado1)
 | E  |  J   |
 |:--:|:----:|
 | E1 |  E2  |
@@ -20,7 +20,7 @@ empleado (estado1)
 | E3 | null |
 | E4 |  E2  |
 
-empleado (estado2)
+tabla empleado (estado2)
 | E  |  J   |
 |:--:|:----:|
 | E1 |  E2  |
@@ -28,10 +28,10 @@ empleado (estado2)
 | E3 |  E2  |
 | E4 |  E2  |
 
-documento (estado1)
+documento empleado (estado1)
 `{"E1":"E2","E2":"E3","E3":NULL,"E4":"E2"}`
 
-documento (estado2)
+documento empleado (estado2)
 `{"E1":"E2","E2": NULL,"E3":E2,"E4":"E2"}`
 
 ## ubuntu install mongo
@@ -40,25 +40,35 @@ documento (estado2)
 
 ```sh
 wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb;
-dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb;
+sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb;
 # apt update;
 # apt install libssl1.1;
 
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list;
+echo "deb [ arch=amd64,arm64,trusted=yes ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list;
 sudo apt update;
 sudo apt install -y mongodb-org;
 
-
 sudo systemctl enable mongod;
-sudo systemctl start mongod;
+sudo systemctl start  mongod;
 sudo systemctl status mongod;
 
 # uso
 mongosh
 > use nueva
 nueva> db.nueva.insert({"mama":"Feli"});
+# {
+#   acknowledged: true,
+#   insertedIds: { '0': ObjectId('65f850a93e1857c6dddb83b2') }
+# }
 nueva> db.nueva.find()
-# [ { _id: ObjectId('65f824a5e2264ab7ffdb83b0'), mama: 'Feli' } ]
-
-
-```
+# [ { _id: ObjectId('65f850a93e1857c6dddb83b2'), mama: 'Feli' } ]
+nueva> db.nueva.insert({"papa":"Basilio"});
+# {
+#   acknowledged: true,
+#   insertedIds: { '0': ObjectId('65f850c13e1857c6dddb83b3') }
+# }
+nueva> db.nueva.find()
+# [
+#   { _id: ObjectId('65f850a93e1857c6dddb83b2'), mama: 'Feli' },
+#   { _id: ObjectId('65f850c13e1857c6dddb83b3'), papa: 'Basilio' }
+# ]
