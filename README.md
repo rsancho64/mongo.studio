@@ -5,13 +5,12 @@
 - [X] [base de datos no sql](https://es.wikipedia.org/wiki/NoSQL)
 - [x] documento [json estructura](https://www.mclibre.org/consultar/informatica/lecciones/formato-json.html)
 - [X] cli mongo install
-- [  cli [mongo example](https://www.digitalocean.com/community/tutorials/how-to-use-the-mongodb-shell) 
+- [X] cli [mongo example](https://www.digitalocean.com/community/tutorials/how-to-use-the-mongodb-shell) 
 - [ ] .
-- [ ] 
 
 ## equivalencia de dos esquemas
 
-sql: `empleado(nombre,IDjefe)`
+sql: `empleado(nombre, IDjefe)`
 
 empleado (estado1)
 | E  |  J   |
@@ -30,10 +29,10 @@ empleado (estado2)
 | E4 |  E2  |
 
 documento (estado1)
-{"E1":"E2","E2":"E3","E3":NULL,"E4":"E2"}
+`{"E1":"E2","E2":"E3","E3":NULL,"E4":"E2"}`
 
 documento (estado2)
-{"E1":"E2","E2": NULL,"E3":E2,"E4":"E2"}
+`{"E1":"E2","E2": NULL,"E3":E2,"E4":"E2"}`
 
 ## ubuntu install mongo
 
